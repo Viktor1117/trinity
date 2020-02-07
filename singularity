@@ -26,9 +26,14 @@ LC_ALL=C.UTF-8
     conda config --add channels conda-forge
     conda config --add channels bioconda
 
+wget https://github.com/alexdobin/STAR/archive/2.7.3a.tar.gz
+tar -xzf 2.7.3a.tar.gz
+cd STAR-2.7.3a
+
+
+# FastQ file
 wget https://github.com/trinityrnaseq/trinityrnaseq/blob/master/sample_data/test_Trinity_Assembly/reads.left.fa.gz
 wget https://github.com/trinityrnaseq/trinityrnaseq/blob/master/sample_data/test_Trinity_Assembly/reads.right.fa.gz
 
-
-# Laddar ned och installerar trininty 
-conda install -c bioconda trinity
+# Laddar ned och installerar Stringtie
+conda install -c bioconda stringtie
