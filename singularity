@@ -30,10 +30,7 @@ LC_ALL=C.UTF-8
     conda config --add channels conda-forge
     conda config --add channels bioconda
 
-# Laddar ned och installerar Stringtie
-conda install -c bioconda stringtie
-
-# wget https://github.com/gpertea/stringtie/raw/test_data/test_data.tar.gz #ladda ned bam filen för stringtie
+# Laddar ned och installerar Trinity
 
 
 
