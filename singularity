@@ -1,37 +1,30 @@
+
 Bootstrap: docker
-From: ubuntu:20.04
+From: ubuntu:16.04
 
 %environment
-#För att programmet ska hittas i miljön
 SHELL=/bin/bash
 PATH=/opt/anaconda/bin:${PATH}
 LC_ALL=C.UTF-8
 
-%runscript #Öppnar container och kör detta skript så att anaconda kan köras
+%runscript
     echo "This is what happens when you run the container..."
     export PATH=/opt/anaconda/bin:${PATH}    
 
-%post #Laddar ned bakgrundsprogram som behövs
+%post
     echo "Hello from inside the container"
     apt-get update
     apt-get -y install wget git bzip2 build-essential gcc zlib1g-dev language-pack-en-base apt-transport-https make cmake unzip python3
     update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 
-#Hoppar in i mappen root och laddar ned följande i denna mapp
     cd /root/ && wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
     cd /root/ && chmod 700 ./Miniconda2-latest-Linux-x86_64.sh
     cd /root/ && bash ./Miniconda2-latest-Linux-x86_64.sh -b -p /opt/anaconda/
 
-# Path så att programmen hittas i miljön
     export PATH=/opt/anaconda/bin:${PATH}
 
-# Inställningar så att rätt kanaler finns
     conda config --add channels defaults
     conda config --add channels conda-forge
     conda config --add channels bioconda
-
-# Laddar ned och installerar Trinity
-
-
-
-
+    
+    conda install -c bioconda trinity
